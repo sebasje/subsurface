@@ -56,6 +56,7 @@ int main(int argc, char **argv)
 	parse_xml_init();
 	taglist_init_global();
 	init_ui();
+	loadPreferences();
 	if (no_filenames) {
 		if (prefs.default_file_behavior == LOCAL_DEFAULT_FILE) {
 			QString defaultFile(prefs.default_filename);
