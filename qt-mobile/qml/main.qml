@@ -7,14 +7,102 @@ import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 import org.subsurfacedivelog.mobile 1.0
 import "qrc:/qml/theme" as Theme
+import org.kde.plasma.mobilecomponents 0.2 as MobileComponents
 
-
-Window {
+MobileComponents.ApplicationWindow {
 	title: qsTr("Subsurface mobile")
 	property bool fullscreen: true
 	property alias messageText: message.text
 	visible: true
 
+	globalDrawer: MobileComponents.GlobalDrawer{
+            title: "Subsurface"
+            titleIcon: "qrc:/qml/subsurface-mobile-icon.png"
+
+            bannerImageSource: "dive.jpg"
+            actions: [
+                Action {
+			text: "Preferences"
+			onTriggered: {
+				stackView.push(prefsWindow)
+			}
+		},
+                Action {
+			text: "Load Dives"
+			onTriggered: {
+				manager.loadDives();
+			}
+		},
+
+		Action {
+			text: "Download Dives"
+			onTriggered: {
+				stackView.push(downloadDivesWindow)
+			}
+		},
+
+		Action {
+			text: "Add Dive"
+			onTriggered: {
+				manager.addDive();
+				stackView.push(detailsWindow)
+			}
+		},
+
+		Action {
+			text: "Save Changes"
+			onTriggered: {
+				manager.saveChanges();
+			}
+		},
+
+                MobileComponents.ActionGroup {
+                    text: "GPS"
+                    Action {
+			text: "Run location service"
+			checkable: true
+			checked: manager.locationServiceEnabled
+			onToggled: {
+				manager.locationServiceEnabled = checked;
+			}
+                    }
+                    Action {
+                            text: "Apply GPS data to dives"
+                            onTriggered: {
+                                    manager.applyGpsData();
+                            }
+                    }
+
+                    Action {
+                            text: "Send GPS data to server"
+                            onTriggered: {
+                                    manager.sendGpsData();
+                            }
+                    }
+
+                    Action {
+                            text: "Clear stored GPS data"
+                            onTriggered: {
+                                    manager.clearGpsData();
+                            }
+                    }
+                },
+
+		Action {
+			text: "View Log"
+			onTriggered: {
+				stackView.push(logWindow)
+			}
+		},
+
+		Action {
+			text: "Theme Information"
+			onTriggered: {
+				stackView.push(themetest)
+			}
+		}
+            ]
+        }
 	Theme.Units {
 		id: units
 
