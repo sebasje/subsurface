@@ -18,7 +18,25 @@
  */
 
 import QtQuick 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import QtGraphicalEffects 1.0
 
+Item {
+    id: root
+    property string source
+    property alias smooth: image.smooth
+    property bool active: false
+    property bool valid: image.status == Image.Ready 
+    implicitWidth: image.sourceSize.width
+    implicitHeight: image.sourceSize.height
 
-PlasmaCore.IconItem {}
+    Image {
+        id: image
+        anchors.fill: parent
+        source: "icons/" + root.source + ".svg"
+    }
+    GammaAdjust {
+        anchors.fill: image
+        source: image
+        gamma: root.active ? 3.0 : 1
+    }
+}

@@ -1,4 +1,4 @@
-#module org.kde.plasma.mobilecomponents
+module org.kde.plasma.mobilecomponents
 #plugin mobilecomponentsplugin
 
 singleton Units 0.2 Units.qml

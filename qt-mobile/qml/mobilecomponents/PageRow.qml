@@ -178,7 +178,7 @@ Item {
         property bool completed: false
 
         // Duration of transition animation (in ms)
-        property int transitionDuration: units.longDuration
+        property int transitionDuration: Units.longDuration
     }
 
     ScrollView {

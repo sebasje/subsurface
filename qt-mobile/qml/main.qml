@@ -1,4 +1,4 @@
-import QtQuick 2.3
+import QtQuick 2.4
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.2
 import QtQuick.Window 2.2
@@ -14,6 +14,14 @@ MobileComponents.ApplicationWindow {
 	title: qsTr("Subsurface mobile")
 	property bool fullscreen: true
 	property alias messageText: message.text
+
+	property int titlePointSize: Math.round(fontMetrics.font.pointSize * 1.5)
+	property int smallPointSize: Math.round(fontMetrics.font.pointSize * 0.7)
+
+	FontMetrics {
+		id: fontMetrics
+	}
+
 	visible: true
 
 	globalDrawer: MobileComponents.GlobalDrawer{

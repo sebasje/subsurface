@@ -49,21 +49,29 @@ ApplicationWindow {
     PageRow {
         id: __pageStack
         anchors.fill: parent
+        focus: true
+        Keys.onReleased: {
+        if (event.key == Qt.Key_Back && stackView.depth > 1) {
+            stackView.pop();
+            event.accepted = true;
+        }
+    }
     }
 
     property AbstractDrawer globalDrawer
     property AbstractDrawer contextDrawer
 
     onGlobalDrawerChanged: {
-        globalDrawer.parent = contentItem;
+        globalDrawer.parent = contentItem.parent;
     }
     onContextDrawerChanged: {
-        contextDrawer.parent = contentItem;
+        contextDrawer.parent = contentItem.parent;
     }
 
     property alias actionButton: __actionButton
     ActionButton {
         id: __actionButton
+        z: 9999
         anchors.bottom: parent.bottom
         x: parent.width/2 - width/2
         iconSource: "distribute-horizontal-x"

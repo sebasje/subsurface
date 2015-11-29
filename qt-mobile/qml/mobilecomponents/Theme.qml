@@ -17,10 +17,9 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-pragma Singleton
+import QtQuick 2.4
 
-import QtQuick 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+pragma Singleton
 
 /*!
    \qmltype Theme
@@ -32,31 +31,32 @@ import org.kde.plasma.core 2.0 as PlasmaCore
    details about choosing a color scheme for your application.
  */
 QtObject {
+    id: theme
 
-    property color textColor: theme.textColor
-    property color highlightColor: theme.highlightColor
-    property color backgroundColor: theme.backgroundColor
-    property color linkColor: theme.linkColor
-    property color visitedLinkColor: theme.visitedLinkColor
+    property color textColor: Qt.rgba(0,0,0, 0.54)
+    
+    property color highlightColor: "#2196F3"
+    property color backgroundColor: "#f3f3f3"
+    property color linkColor: "#2196F3"
+    property color visitedLinkColor: "#2196F3"
 
-    property color buttonTextColor: theme.buttonTextColor
-    property color buttonBackgroundColor: theme.buttonBackgroundColor
-    property color buttonHoverColor: theme.buttonHoverColor
-    property color buttonFocusColor: theme.buttonFocusColor
+    property color buttonTextColor: Qt.rgba(0,0,0, 0.54)
+    property color buttonBackgroundColor: "#f3f3f3"
+    property color buttonHoverColor: "#2196F3"
+    property color buttonFocusColor: "#2196F3"
 
-    property color viewTextColor: theme.viewTextColor
-    property color viewBackgroundColor: theme.viewBackgroundColor
-    property color viewHoverColor: theme.viewHoverColor
-    property color viewFocusColor: theme.viewFocusColor
+    property color viewTextColor: Qt.rgba(0,0,0, 0.54)
+    property color viewBackgroundColor: "#f3f3f3"
+    property color viewHoverColor: "#2196F3"
+    property color viewFocusColor: "#2196F3"
 
-    property color complementaryTextColor: theme.complementaryTextColor
-    property color complementaryBackgroundColor: theme.complementaryBackgroundColor
-    property color complementaryHoverColor: theme.complementaryHoverColor
-    property color complementaryFocusColor: theme.complementaryFocusColor
+    property color complementaryTextColor: "#f3f3f3"
+    property color complementaryBackgroundColor: Qt.rgba(0,0,0, 0.54)
+    property color complementaryHoverColor: "#2196F3"
+    property color complementaryFocusColor: "#2196F3"
 
-    property variant defaultFont: theme.defaultFont
+    property font defaultFont: fontMetrics.font
 
-    /* Added for subsurface */
-	property color accentColor: "#2d5b9a"
-	property color accentTextColor: "#ececec"
+    property variant fontMetrics: TextMetrics {}
+
 }

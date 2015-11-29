@@ -21,7 +21,7 @@ import QtQuick 2.1
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.2
 import QtGraphicalEffects 1.0
-//import org.kde.plasma.mobilecomponents 0.2
+import org.kde.plasma.mobilecomponents 0.2
 
 OverlayDrawer {
     id: root
@@ -38,7 +38,7 @@ OverlayDrawer {
         id: mainColumn
         anchors.fill: parent
         spacing: 0
-        implicitWidth: units.gridUnit * 12
+        implicitWidth: Units.gridUnit * 12
 
         Image {
             id: bannerImage
@@ -62,6 +62,7 @@ OverlayDrawer {
                     right: parent.right
                     top: parent.top
                 }
+                visible: bannerImageSource != ""
                 height: title.height * 1.3
                 start: Qt.point(0, 0)
                 end: Qt.point(0, height)
@@ -132,6 +133,7 @@ OverlayDrawer {
             id: menuComponent
             ListView {
                 id: optionMenu
+                clip: true
 
                 model: actions
                 property int level: 0
@@ -183,6 +185,7 @@ OverlayDrawer {
                         } else {
                             modelData.trigger();
                             pageRow.pop(pageRow.initialPage);
+                            root.opened = false;
                         }
                     }
                 }

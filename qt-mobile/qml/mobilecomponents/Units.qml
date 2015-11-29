@@ -17,19 +17,21 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-pragma Singleton
+import QtQuick 2.4
+import QtQuick.Window 2.2
 
-import QtQuick 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+pragma Singleton
 
 
 QtObject {
+    id: units
+
     /**
      * The fundamental unit of space that should be used for sizes, expressed in pixels.
      * Given the screen has an accurate DPI settings, it corresponds to a width of
      * the capital letter M
      */
-    property int gridUnit: units.gridUnit
+    property int gridUnit: textMetrics.height
 
     /**
      * units.iconSizes provides access to platform-dependent icon sizing
@@ -49,12 +51,12 @@ QtObject {
      * * desktop
      */
     property QtObject iconSizes: QtObject {
-        property int small: units.iconSizes.small
-        property int smallMedium: units.iconSizes.smallMedium
-        property int medium: units.iconSizes.medium
-        property int large: units.iconSizes.large
-        property int huge: units.iconSizes.huge
-        property int enormous: units.iconSizes.enormous
+        property int small: 16 * devicePixelRatio
+        property int smallMedium: 22 * devicePixelRatio
+        property int medium: 32 * devicePixelRatio
+        property int large: 48 * devicePixelRatio
+        property int huge: 64 * devicePixelRatio
+        property int enormous: 128 * devicePixelRatio
     }
 
     /**
@@ -63,7 +65,7 @@ QtObject {
      * the default font as rendered on the screen, so it takes user-configured font size and DPI
      * into account.
      */
-    property int smallSpacing: units.smallSpacing
+    property int smallSpacing: gridUnit/4
 
     /**
      * units.largeSpacing is the amount of spacing that should be used inside bigger UI elements,
@@ -71,7 +73,7 @@ QtObject {
      * the size of the default font as rendered on the screen, so it takes user-configured font
      * size and DPI into account.
      */
-    property int largeSpacing: units.largeSpacing
+    property int largeSpacing: gridUnit
 
     /**
      * The ratio between physical and device-independent pixels. This value does not depend on the \
@@ -79,22 +81,19 @@ QtObject {
      * use theme.mSize(theme.defaultFont), units.smallSpacing and units.largeSpacing.
      * The devicePixelRatio follows the definition of "device independent pixel" by Microsoft.
      */
-    property real devicePixelRatio: units.devicePixelRatio
+    property real devicePixelRatio: Screen.devicePixelRatio
 
     /**
      * units.longDuration should be used for longer, screen-covering animations, for opening and
      * closing of dialogs and other "not too small" animations
      */
-    property int longDuration: units.longDuration
+    property int longDuration: 250
 
     /**
      * units.shortDuration should be used for short animations, such as accentuating a UI event,
      * hover events, etc..
      */
-    property int shortDuration: units.shortDuration
+    property int shortDuration: 150
 
-
-    property int titlePointSize: Math.round(fontMetrics.font.pointSize * 1.5)
-	property int smallPointSize: Math.round(fontMetrics.font.pointSize * 0.7)
-
+    property variant fontMetrics: TextMetrics {}
 }
