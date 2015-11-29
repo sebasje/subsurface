@@ -6,7 +6,8 @@ import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 import org.subsurfacedivelog.mobile 1.0
-import "qrc:/qml/theme" as Theme
+// import "qrc:/qml/theme" as Theme
+//import org.kde.plasma.mobilecomponents 0.2 as MobileComponents
 import org.kde.plasma.mobilecomponents 0.2 as MobileComponents
 
 MobileComponents.ApplicationWindow {
@@ -16,18 +17,19 @@ MobileComponents.ApplicationWindow {
 	visible: true
 
 	globalDrawer: MobileComponents.GlobalDrawer{
-            title: "Subsurface"
-            titleIcon: "qrc:/qml/subsurface-mobile-icon.png"
+		title: "Subsurface"
+		titleIcon: "qrc:/qml/subsurface-mobile-icon.png"
 
-            bannerImageSource: "dive.jpg"
-            actions: [
-                Action {
+		bannerImageSource: "dive.jpg"
+		actions: [
+		Action {
 			text: "Preferences"
 			onTriggered: {
 				stackView.push(prefsWindow)
 			}
 		},
-                Action {
+
+		Action {
 			text: "Load Dives"
 			onTriggered: {
 				manager.loadDives();
@@ -56,37 +58,37 @@ MobileComponents.ApplicationWindow {
 			}
 		},
 
-                MobileComponents.ActionGroup {
-                    text: "GPS"
-                    Action {
+		MobileComponents.ActionGroup {
+			text: "GPS"
+			Action {
 			text: "Run location service"
 			checkable: true
 			checked: manager.locationServiceEnabled
 			onToggled: {
 				manager.locationServiceEnabled = checked;
 			}
-                    }
-                    Action {
-                            text: "Apply GPS data to dives"
-                            onTriggered: {
-                                    manager.applyGpsData();
-                            }
-                    }
+		}
+		Action {
+				text: "Apply GPS data to dives"
+				onTriggered: {
+						manager.applyGpsData();
+				}
+		}
 
-                    Action {
-                            text: "Send GPS data to server"
-                            onTriggered: {
-                                    manager.sendGpsData();
-                            }
-                    }
+		Action {
+				text: "Send GPS data to server"
+				onTriggered: {
+						manager.sendGpsData();
+				}
+		}
 
-                    Action {
-                            text: "Clear stored GPS data"
-                            onTriggered: {
-                                    manager.clearGpsData();
-                            }
-                    }
-                },
+		Action {
+				text: "Clear stored GPS data"
+				onTriggered: {
+						manager.clearGpsData();
+				}
+		}
+	},
 
 		Action {
 			text: "View Log"
@@ -102,21 +104,21 @@ MobileComponents.ApplicationWindow {
 			}
 		}
             ]
-        }
-	Theme.Units {
-		id: units
-
-		property int titlePointSize: Math.round(fontMetrics.font.pointSize * 1.5)
-		property int smallPointSize: Math.round(fontMetrics.font.pointSize * 0.7)
-
 	}
-
-	Theme.Theme {
-		id: theme
-		/* Added for subsurface */
-		property color accentColor: "#2d5b9a"
-		property color accentTextColor: "#ececec"
-	}
+// 	MobileComponents.Units {
+// 		id: units
+//
+// 		property int titlePointSize: Math.round(fontMetrics.font.pointSize * 1.5)
+// 		property int smallPointSize: Math.round(fontMetrics.font.pointSize * 0.7)
+//
+// 	}
+//
+// 	MobileComponents.Theme {
+// 		id: theme
+// 		/* Added for subsurface */
+// 		property color accentColor: "#2d5b9a"
+// 		property color accentTextColor: "#ececec"
+// 	}
 
 	Menu {
 		id: prefsMenu
