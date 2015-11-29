@@ -34,7 +34,7 @@ QtObject {
     property int gridUnit: fontMetrics.height
 
     /**
-     * units.iconSizes provides access to platform-dependent icon sizing
+     * MobileComponents.Units.iconSizes provides access to platform-dependent icon sizing
      *
      * The icon sizes provided are normalized for different DPI, so icons
      * will scale depending on the DPI.
@@ -60,7 +60,7 @@ QtObject {
     }
 
     /**
-     * units.smallSpacing is the amount of spacing that should be used around smaller UI elements,
+     * MobileComponents.Units.smallSpacing is the amount of spacing that should be used around smaller UI elements,
      * for example as spacing in Columns. Internally, this size depends on the size of
      * the default font as rendered on the screen, so it takes user-configured font size and DPI
      * into account.
@@ -68,7 +68,7 @@ QtObject {
     property int smallSpacing: gridUnit/4
 
     /**
-     * units.largeSpacing is the amount of spacing that should be used inside bigger UI elements,
+     * MobileComponents.Units.largeSpacing is the amount of spacing that should be used inside bigger UI elements,
      * for example between an icon and the corresponding text. Internally, this size depends on
      * the size of the default font as rendered on the screen, so it takes user-configured font
      * size and DPI into account.
@@ -78,19 +78,19 @@ QtObject {
     /**
      * The ratio between physical and device-independent pixels. This value does not depend on the \
      * size of the configured font. If you want to take font sizes into account when scaling elements,
-     * use theme.mSize(theme.defaultFont), units.smallSpacing and units.largeSpacing.
+     * use MobileComponents.Theme.mSize(MobileComponents.Theme.defaultFont), MobileComponents.Units.smallSpacing and MobileComponents.Units.largeSpacing.
      * The devicePixelRatio follows the definition of "device independent pixel" by Microsoft.
      */
     property real devicePixelRatio: Screen.devicePixelRatio
 
     /**
-     * units.longDuration should be used for longer, screen-covering animations, for opening and
+     * MobileComponents.Units.longDuration should be used for longer, screen-covering animations, for opening and
      * closing of dialogs and other "not too small" animations
      */
     property int longDuration: 250
 
     /**
-     * units.shortDuration should be used for short animations, such as accentuating a UI event,
+     * MobileComponents.Units.shortDuration should be used for short animations, such as accentuating a UI event,
      * hover events, etc..
      */
     property int shortDuration: 150

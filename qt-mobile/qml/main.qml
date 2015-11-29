@@ -6,8 +6,6 @@ import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 import org.subsurfacedivelog.mobile 1.0
-// import "qrc:/qml/theme" as Theme
-//import org.kde.plasma.mobilecomponents 0.2 as MobileComponents
 import org.kde.plasma.mobilecomponents 0.2 as MobileComponents
 
 MobileComponents.ApplicationWindow {
@@ -236,7 +234,7 @@ MobileComponents.ApplicationWindow {
 				ColumnLayout {
 					id: awLayout
 					anchors.fill: parent
-					spacing: units.gridUnit / 2
+					spacing: MobileComponents.Units.gridUnit / 2
 
 					Rectangle {
 						id: detailsPage
@@ -246,7 +244,7 @@ MobileComponents.ApplicationWindow {
 						DiveList {
 							anchors.fill: detailsPage
 							id: diveDetails
-							color: theme.backgroundColor
+							color: MobileComponents.Theme.backgroundColor
 						}
 					}
 
@@ -254,14 +252,14 @@ MobileComponents.ApplicationWindow {
 						id: messageArea
 						height: childrenRect.height
 						Layout.fillWidth: true
-						color: theme.backgroundColor
+						color: MobileComponents.Theme.backgroundColor
 
 						Text {
 							id: message
-							color: theme.textColor
+							color: MobileComponents.Theme.textColor
 							wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere
-							styleColor: theme.textColor
-							font.pointSize: units.smallPointSize
+							styleColor: MobileComponents.Theme.textColor
+							font.pointSize: MobileComponents.Units.smallPointSize
 						}
 					}
 				}
@@ -299,6 +297,6 @@ MobileComponents.ApplicationWindow {
 	}
 
 	Component.onCompleted: {
-		print("units.gridUnit is: " + units.gridUnit);
+		print("MobileComponents.Units.gridUnit is: " + MobileComponents.Units.gridUnit);
 	}
 }
