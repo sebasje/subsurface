@@ -64,9 +64,17 @@ ApplicationWindow {
         }
         focus: true
         Keys.onReleased: {
-            if (event.key == Qt.Key_Back && stackView.depth > 1) {
-                stackView.pop();
-                event.accepted = true;
+            if (event.key == Qt.Key_Back) {
+                if (root.contextDrawer && root.contextDrawer.opened) {
+                    root.contextDrawer.close();
+                    event.accepted = true;
+                } else if (root.globalDrawer && root.globalDrawer.opened) {
+                    root.globalDrawer.close();
+                    event.accepted = true;
+                } else if (stackView.depth > 1) {
+                    stackView.pop();
+                    event.accepted = true;
+                }
             }
         }
     }
@@ -92,7 +100,7 @@ ApplicationWindow {
         z: 9999
         anchors.bottom: parent.bottom
         x: parent.width/2 - width/2
-        iconSource: "distribute-horizontal-x"
+        iconSource: action && action.iconName ? action.iconName : "distribute-horizontal-x"
 
         visible: root.globalDrawer || root.contextDrawer
     }
