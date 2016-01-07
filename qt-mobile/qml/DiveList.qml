@@ -146,6 +146,10 @@ MobileComponents.Page {
 			anchors.fill: parent
 			model: diveModel
 			currentIndex: -1
+			Connections {
+				target: detailsWindow
+				onCurrentIndexChanged: diveListView.currentIndex = detailsWindow.currentIndex
+                        }
 			delegate: diveDelegate
 			boundsBehavior: Flickable.StopAtBounds
 			maximumFlickVelocity: parent.height * 5

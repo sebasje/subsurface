@@ -9,6 +9,30 @@ import org.subsurfacedivelog.mobile 1.0
 MobileComponents.Page {
 	id: page
 	objectName: "DiveList"
+	property alias currentIndex: diveListView.currentIndex
+	mainAction: Action {
+		iconName: editDrawer.opened ? "dialog-cancel" : "document-edit"
+		onTriggered: {
+			if (editDrawer.opened) {
+				editDrawer.close();
+				return;
+			}
+			detailsEdit.dive_id = diveListView.currentItem.modelData.id
+			detailsEdit.number = diveListView.currentItem.modelData.diveNumber
+			detailsEdit.dateText = diveListView.currentItem.modelData.date
+			detailsEdit.locationText = diveListView.currentItem.modelData.location
+			detailsEdit.durationText = diveListView.currentItem.modelData.duration
+			detailsEdit.depthText = diveListView.currentItem.modelData.depth
+			detailsEdit.airtempText = diveListView.currentItem.modelData.airtemp
+			detailsEdit.watertempText = diveListView.currentItem.modelData.watertemp
+			detailsEdit.suitText = diveListView.currentItem.modelData.suit
+			detailsEdit.buddyText = diveListView.currentItem.modelData.buddy
+			detailsEdit.divemasterText = diveListView.currentItem.modelData.divemaster
+			detailsEdit.notesText = diveListView.currentItem.modelData.notes
+			editDrawer.open();
+		}
+	}
+
 	function showDiveIndex(index) {
 	    diveListView.currentIndex = index;
 	    diveListView.positionViewAtIndex(diveListView.currentIndex, ListView.Beginning);
@@ -29,6 +53,9 @@ MobileComponents.Page {
 			focus: true
 			clip: true
 			snapMode: ListView.SnapOneItem
+			onMovementEnded: {
+                                currentIndex = indexAt(contentX+1, 1);
+                        }
 			delegate: ScrollView {
 				id: internalScrollView
 				width: diveListView.width
@@ -45,33 +72,14 @@ MobileComponents.Page {
 			}
 		}
 	}
-	Button {
-            text: "Edit"
-            x: 100
-            y: 100
-            onClicked: {
-                detailsEdit.dive_id = diveListView.currentItem.modelData.id
-                detailsEdit.number = diveListView.currentItem.modelData.diveNumber
-                detailsEdit.dateText = diveListView.currentItem.modelData.date
-                detailsEdit.locationText = diveListView.currentItem.modelData.location
-                detailsEdit.durationText = diveListView.currentItem.modelData.duration
-                detailsEdit.depthText = diveListView.currentItem.modelData.depth
-                detailsEdit.airtempText = diveListView.currentItem.modelData.airtemp
-                detailsEdit.watertempText = diveListView.currentItem.modelData.watertemp
-                detailsEdit.suitText = diveListView.currentItem.modelData.suit
-                detailsEdit.buddyText = diveListView.currentItem.modelData.buddy
-                detailsEdit.divemasterText = diveListView.currentItem.modelData.divemaster
-                detailsEdit.notesText = diveListView.currentItem.modelData.notes
-                editDrawer.open();
-            }
-        }
+
 	MobileComponents.OverlayDrawer {
-            id: editDrawer
-            anchors.fill: parent
-            edge: Qt.BottomEdge
-            contentItem: DiveDetailsEdit {
-                id: detailsEdit
-                implicitHeight: page.height - MobileComponents.Units.gridUnit*3
-            }
-        }
+		id: editDrawer
+		anchors.fill: parent
+		edge: Qt.BottomEdge
+		contentItem: DiveDetailsEdit {
+			id: detailsEdit
+			implicitHeight: page.height - MobileComponents.Units.gridUnit*3
+		}
+	}
 }
