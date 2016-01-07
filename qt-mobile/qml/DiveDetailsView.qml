@@ -18,13 +18,13 @@ GridLayout {
 
 	property int labelWidth: MobileComponents.Units.gridUnit * 10
 
-	Connections {
+	/*Connections {
 		target: diveDetailsWindow
 		onDive_idChanged: {
 			qmlProfile.diveId = diveDetailsWindow.dive_id
 			qmlProfile.update()
 		}
-	}
+	}*/
 
 	MobileComponents.Heading {
 		id: detailsViewHeading
@@ -100,7 +100,11 @@ GridLayout {
 		Layout.fillWidth: true
 		Layout.preferredHeight: width * 0.66
 		Layout.columnSpan: 4
-
+		//diveId: model.id
+		Component.onCompleted: {
+                    qmlProfile.diveId = model.id;
+                    qmlProfile.update();
+                }
 		Rectangle {
 			color: "transparent"
 			opacity: 0.6

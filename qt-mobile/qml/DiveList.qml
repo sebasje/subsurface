@@ -25,25 +25,9 @@ MobileComponents.Page {
 			//When clicked, the mode changes to details view
 
 			onClicked: {
-				diveListView.currentIndex = model.index
-				detailsWindow.width = parent.width
-				detailsWindow.location = location
-				detailsWindow.gps = gps
-				detailsWindow.dive_id = id
-				detailsWindow.diveNumber = diveNumber
-				detailsWindow.duration = duration
-				detailsWindow.depth = depth
-				detailsWindow.rating = rating
-				detailsWindow.buddy = buddy
-				detailsWindow.suit = suit
-				detailsWindow.airtemp = airtemp
-				detailsWindow.watertemp = watertemp
-				detailsWindow.divemaster = divemaster
-				detailsWindow.notes = notes
-				detailsWindow.number = diveNumber
-				detailsWindow.date = date
-				detailsWindow.weight = weight
-				stackView.push(detailsWindow)
+                            diveListView.currentIndex = model.index
+                            detailsWindow.showDiveIndex(index);
+                            stackView.push(detailsWindow);
 			}
 
 			Item {
