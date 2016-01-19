@@ -245,4 +245,14 @@ MobileComponents.ApplicationWindow {
 	Component.onCompleted: {
 		manager.finishSetup();
 	}
+
+	Timer {
+        interval: 5000
+        repeat: true
+        running: true
+        onTriggered: {
+            print("Keyboard is: " + Qt.inputMethod.keyboardRectangle.width + "x" + Qt.inputMethod.keyboardRectangle.height);
+
+        }
+    }
 }
